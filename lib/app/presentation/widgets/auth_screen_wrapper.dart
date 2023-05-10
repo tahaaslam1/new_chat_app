@@ -7,22 +7,20 @@ class AuthScreenWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: AbsorbPointer(
-        absorbing: isAuthenticating,
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Scaffold(
-            body: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(28.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 48),
-                      child,
-                    ],
-                  ),
+    return AbsorbPointer(
+      absorbing: isAuthenticating,
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          body: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 48),
+                    child,
+                  ],
                 ),
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_frame/flutter_web_frame.dart';
+import 'package:new_chat_app/app/cubits/auth/authentication_cubit.dart';
 import 'package:new_chat_app/app/presentation/screens/home/home_screen.dart';
 import 'package:new_chat_app/app/presentation/screens/login/login_screen.dart';
 import 'package:new_chat_app/app/presentation/screens/news/news_screen.dart';
@@ -32,12 +33,12 @@ class App extends StatelessWidget {
               theme: AppTheme.theme,
               onGenerateRoute: AppNavigator.onGenerateRoute,
               builder: (context, child) {
-                return NewsScreen();
+                // return AppNavigator.replaceWith(route: Routes.register);
 
-                // return BlocListener<AuthenticationCubit, AuthenticationState>(
-                //   listener: (context, state) => AppNavigator.navigate(state.status),
-                //   child: child,
-                // );
+                return BlocListener<AuthenticationCubit, AuthenticationState>(
+                  listener: (context, state) => AppNavigator.navigate(state.status),
+                  child: child,
+                );
               },
             );
           }),
