@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_chat_app/app/cubits/auth/authentication_cubit.dart';
+import 'package:new_chat_app/app/models/user.dart';
 import 'package:new_chat_app/app/presentation/widgets/buttons/custom_elevated_button.dart';
+import 'package:new_chat_app/app/presentation/widgets/buttons/custom_outlined_button.dart';
+import 'package:new_chat_app/services/extension_methods.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Hi UserNames'),
+          title: Text('Hi ${User.instance.username!.toTitleCase()}'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -24,6 +29,12 @@ class HomeScreen extends StatelessWidget {
                 CustomElevatedButton(
                   onPressed: () {},
                   buttonText: 'View top headlines in United States',
+                ),
+                CustomOutlinedButton(
+                  onPressed: () {
+                    BlocProvider.of<AuthenticationCubit>(context).logout();
+                  },
+                  buttonText: 'Logout',
                 ),
               ],
             ),

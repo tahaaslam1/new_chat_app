@@ -2,6 +2,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_chat_app/app/models/news.dart';
+import 'package:new_chat_app/app/repositories/news_repository/news_repository.dart';
 import 'package:new_chat_app/core/constants.dart';
 import 'package:new_chat_app/core/failure.dart';
 import 'package:new_chat_app/services/http_service.dart';
@@ -20,10 +21,10 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  final HttpService _httpService;
+  late NewsRepository _newsRepository;
   NewsBloc({
-    required HttpService httpService,
-  })  : _httpService = httpService,
+    required NewsRepository newsRepository,
+  })  : _newsRepository = newsRepository,
         super(const NewsState()) {
     on<FetchNews>(
       _onFetchNews,
@@ -35,7 +36,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     if (state.hasReachedMax) return;
     try {
       if (state.status == NewsStatus.initial) {
-        final news = await _getNews();
+        final news = await _newsRepository.getNews();
         return emit(state.copyWith(
           status: NewsStatus.success,
           news: news,
@@ -43,7 +44,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         ));
       }
 
-      final news = await _getNews(state.page + 1);
+      final news = await _newsRepository.getNews(state.page + 1);
 
       news.isEmpty
           ? emit(state.copyWith(hasReachedMax: true))
@@ -58,25 +59,25 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
   }
 
-  Future<List<News>> _getNews([int startIndex = 1]) async {
-    logger.d(startIndex);
-    try {
-      const int limit = 10;
-      List<News> news = [];
+  // Future<List<News>> _getNews([int startIndex = 1]) async {
+  //   logger.d(startIndex);
+  //   try {
+  //     const int limit = 10;
+  //     List<News> news = [];
 
-      final response = await _httpService.request(RequestMethod.get, kBaseUrl, queryParameters: {
-        'country': 'us',
-        'apiKey': kApiKey,
-        'pageSize': limit,
-        'page': startIndex,
-      });
+  //     final response = await _newsRepository.request(RequestMethod.get, kBaseUrl, queryParameters: {
+  //       'country': 'us',
+  //       'apiKey': kApiKey,
+  //       'pageSize': limit,
+  //       'page': startIndex,
+  //     });
 
-      news = response.data['articles'].map<News>((res) => News.fromJson(res)).toList();
+  //     news = response.data['articles'].map<News>((res) => News.fromJson(res)).toList();
 
-      return news;
-    } catch (e) {
-      logger.e(e);
-      throw Failure(message: kGenericErrorMessage);
-    }
-  }
+  //     return news;
+  //   } catch (e) {
+  //     logger.e(e);
+  //     throw Failure(message: kGenericErrorMessage);
+  //   }
+  // }
 }

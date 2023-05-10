@@ -1,10 +1,19 @@
-import 'package:equatable/equatable.dart';
+class User {
+  static User instance = User._internal();
 
-class User extends Equatable {
-  final String id;
+  User._internal();
 
-  const User({required this.id});
+  String? userId;
+  String? username;
 
-  @override
-  List<Object> get props => [id];
+  // const User({required this.userId, required this.username});
+
+  static Map<String, dynamic> toMap(String userId, String username, String password, int isLoggedIn) {
+    return {
+      'user_id': userId,
+      'username': username,
+      'password': password,
+      'is_logged_in': isLoggedIn,
+    };
+  }
 }
