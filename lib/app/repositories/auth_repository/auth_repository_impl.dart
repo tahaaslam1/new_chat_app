@@ -12,13 +12,8 @@ import 'package:uuid/uuid.dart';
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
   final _controller = StreamController<AuthenticationStatus>();
 
-  // @override
-  // // TODO: implement authenticationStatus
-  // Stream<AuthenticationStatus> get authenticationStatus => throw UnimplementedError();
-
   @override
   Stream<AuthenticationStatus> get authenticationStatus async* {
-    logger.wtf('checking auth status');
     final signedIn = isSignedIn();
     if (await signedIn) {
       _controller.add(AuthenticationStatus.authenticated);

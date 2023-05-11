@@ -7,9 +7,6 @@ import 'package:new_chat_app/app/repositories/auth_repository/auth_repository.da
 
 part 'authentication_state.dart';
 
-// class AuthenticationCubit extends Cubit<AuthenticationState> {
-//   AuthenticationCubit() : super(AuthenticationInitial());
-// }
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   final AuthenticationRepository _authenticationRepository;

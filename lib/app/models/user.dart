@@ -6,8 +6,6 @@ class User {
   String? userId;
   String? username;
 
-  // const User({required this.userId, required this.username});
-
   static Map<String, dynamic> toMap(String userId, String username, String password, int isLoggedIn) {
     return {
       'user_id': userId,

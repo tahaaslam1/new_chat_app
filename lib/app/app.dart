@@ -33,8 +33,6 @@ class App extends StatelessWidget {
               theme: AppTheme.theme,
               onGenerateRoute: AppNavigator.onGenerateRoute,
               builder: (context, child) {
-                // return AppNavigator.replaceWith(route: Routes.register);
-
                 return BlocListener<AuthenticationCubit, AuthenticationState>(
                   listener: (context, state) => AppNavigator.navigate(state.status),
                   child: child,

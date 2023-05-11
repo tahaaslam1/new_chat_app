@@ -21,7 +21,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  late NewsRepository _newsRepository;
+  late final NewsRepository _newsRepository;
   NewsBloc({
     required NewsRepository newsRepository,
   })  : _newsRepository = newsRepository,
@@ -58,26 +58,4 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(state.copyWith(status: NewsStatus.failure));
     }
   }
-
-  // Future<List<News>> _getNews([int startIndex = 1]) async {
-  //   logger.d(startIndex);
-  //   try {
-  //     const int limit = 10;
-  //     List<News> news = [];
-
-  //     final response = await _newsRepository.request(RequestMethod.get, kBaseUrl, queryParameters: {
-  //       'country': 'us',
-  //       'apiKey': kApiKey,
-  //       'pageSize': limit,
-  //       'page': startIndex,
-  //     });
-
-  //     news = response.data['articles'].map<News>((res) => News.fromJson(res)).toList();
-
-  //     return news;
-  //   } catch (e) {
-  //     logger.e(e);
-  //     throw Failure(message: kGenericErrorMessage);
-  //   }
-  // }
 }

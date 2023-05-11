@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "726461962519",
+    "project_id": "news-chat-app",
+    "storage_bucket": "news-chat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726461962519:android:c1edd835bdf1bd4bb73f52",
+        "android_client_info": {
+          "package_name": "com.example.new_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726461962519-i0d8uuj8p5a8btv87l115b6v4037tomr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlkkP4SpARpnXo9w5dZXMRMFG26SEU5h0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726461962519-i0d8uuj8p5a8btv87l115b6v4037tomr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "726461962519-el2aj48crtolni02olpj5pudnms1k7ca.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.newChatApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -44,6 +44,7 @@ class _NewsScreenState extends State<NewsScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          
           centerTitle: true,
           title: const Text('Top headlines in United States'),
         ),
@@ -59,7 +60,6 @@ class _NewsScreenState extends State<NewsScreen> {
                   return const Center(child: Text('no posts'));
                 }
                 return ListView.builder(
-                  // addAutomaticKeepAlives: true,
                   controller: _scrollController,
                   itemCount: state.hasReachedMax ? state.news.length : state.news.length + 1,
                   itemBuilder: (BuildContext context, int index) {
@@ -73,7 +73,6 @@ class _NewsScreenState extends State<NewsScreen> {
               default:
                 return const Center(child: CircularProgressIndicator());
             }
-            // return ListView();
           },
         )),
       ),
